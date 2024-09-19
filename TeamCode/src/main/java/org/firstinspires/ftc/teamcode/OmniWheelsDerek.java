@@ -73,7 +73,13 @@ public class OmniWheels extends LinearOpMode {
     private DcMotor leftBackDrive = null;
     private DcMotor rightFrontDrive = null;
     private DcMotor rightBackDrive = null;
+    
+    private DcMotor shoulderUpDown = null;
+    private Servo handMovement = null;
+    private DcMotor scissorExtend = null;
 
+
+    
     @Override
     public void runOpMode() {
 
@@ -84,6 +90,13 @@ public class OmniWheels extends LinearOpMode {
         rightFrontDrive = hardwareMap.get(DcMotor.class, "right_front_drive");
         rightBackDrive = hardwareMap.get(DcMotor.class, "right_back_drive");
 
+        // We don't have a robot yet, so no way 
+        shoulderMove = hardwareMap.get(DcMotor.class, "");
+        handMovement = hardwareMap.get(DcMotor.class, "");
+        scissorExtend = hardwareMap.get(DcMotor.class, "");
+
+
+        
         // ########################################################################################
         // !!!            IMPORTANT Drive Information. Test your motor directions.            !!!!!
         // ########################################################################################
