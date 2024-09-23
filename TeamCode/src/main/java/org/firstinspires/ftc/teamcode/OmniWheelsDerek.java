@@ -33,6 +33,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /*
@@ -74,9 +75,9 @@ public class OmniWheels extends LinearOpMode {
     private DcMotor rightFrontDrive = null;
     private DcMotor rightBackDrive = null;
     
-    private DcMotor shoulderUpDown = null;
+    private DcMotor shoulderMove = null;
     private Servo handMovement = null;
-    private DcMotor scissorExtend = null;
+    private DcMotor elbowMove = null;
 
 
     
@@ -90,10 +91,10 @@ public class OmniWheels extends LinearOpMode {
         rightFrontDrive = hardwareMap.get(DcMotor.class, "right_front_drive");
         rightBackDrive = hardwareMap.get(DcMotor.class, "right_back_drive");
 
-        // We don't have a robot yet, so no way 
-        shoulderMove = hardwareMap.get(DcMotor.class, "");
-        handMovement = hardwareMap.get(DcMotor.class, "");
-        scissorExtend = hardwareMap.get(DcMotor.class, "");
+        // We don't have a robot yet, so example for what it is called
+        shoulderMove = hardwareMap.get(DcMotor.class, "shoulder_Move");
+        handMovement = hardwareMap.get(Servo.class, "hand_Movement");
+        elbowMove = hardwareMap.get(DcMotor.class, "elbowMove");
 
 
         
@@ -112,6 +113,16 @@ public class OmniWheels extends LinearOpMode {
         rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
 
+        elbowMove.setDirection(DcMotor.Direction.FORWARD);
+        shoulderMove.setDirection(DcMotor.Direction.FORWARD);
+
+
+        // Servo setup
+        static final double INCRAMENT = 0.01;
+        static final int CYCLE_MS = 50;
+        static final double MAX_POS = 1.0;
+        static final double MIN_POS = 0.0;
+        
         // Wait for the game to start (driver presses START)
         telemetry.addData("High Five", "We Roboted!!!");
         telemetry.update();
