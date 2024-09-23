@@ -74,7 +74,8 @@ public class OmniWheels extends LinearOpMode {
     private DcMotor leftBackDrive = null;
     private DcMotor rightFrontDrive = null;
     private DcMotor rightBackDrive = null;
-    
+
+    // Arm
     private DcMotor shoulderMove = null;
     private Servo handMovement = null;
     private DcMotor elbowMove = null;
@@ -116,7 +117,6 @@ public class OmniWheels extends LinearOpMode {
 
         elbowMove.setDirection(DcMotor.Direction.FORWARD);
         shoulderMove.setDirection(DcMotor.Direction.FORWARD);
-
 
         // Servo setup
         static final double INCRAMENT = 0.01;
