@@ -64,9 +64,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@TeleOp(name="OmniWheels 0.1", group="OmniOp")
+@TeleOp(name="OmniWheelsDerek 0.1", group="OmniOp")
 @Disabled
-public class OmniWheels extends LinearOpMode { 
+public class OmniWheelsDerek extends LinearOpMode { 
 
     // Declare OpMode members for each of the 4 motors.
     private ElapsedTime runtime = new ElapsedTime();
@@ -93,9 +93,9 @@ public class OmniWheels extends LinearOpMode {
         rightBackDrive = hardwareMap.get(DcMotor.class, "right_back_drive");
 
         // We don't have a robot yet, so example for what it is called
-        shoulderMove = hardwareMap.get(DcMotor.class, "shoulder_Move");
-        handMovement = hardwareMap.get(Servo.class, "hand_Movement");
-        elbowMove = hardwareMap.get(DcMotor.class, "elbowMove");
+        shoulderMove = hardwareMap.get(DcMotor.class, "shoulder_move");
+        handMovement = hardwareMap.get(Servo.class, "hand_servo");
+        elbowMove = hardwareMap.get(DcMotor.class, "elbow_move");
 
 
         
@@ -117,12 +117,6 @@ public class OmniWheels extends LinearOpMode {
 
         elbowMove.setDirection(DcMotor.Direction.FORWARD);
         shoulderMove.setDirection(DcMotor.Direction.FORWARD);
-
-        // Servo setup
-        static final double INCRAMENT = 0.01;
-        static final int CYCLE_MS = 50;
-        static final double MAX_POS = 1.0;
-        static final double MIN_POS = 0.0;
         
         // Wait for the game to start (driver presses START)
         telemetry.addData("High Five", "We Roboted!!!");
@@ -135,6 +129,14 @@ public class OmniWheels extends LinearOpMode {
         while (opModeIsActive()) {
             double max;
 
+
+             // Servo setup
+            static final double INCRAMENT = 0.01;  // Incrament by .01 every time
+            static final int CYCLE_MS = 50;        // Incrament every 50ms
+            static final double MAX_POS = 1.0;     // Maximum Rotational position of 1.0
+            static final double MIN_POS = 0.0;     // Minimum Rotational position of 0.0
+
+            
             // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate.
             //     Forward/Backward
             double axial   = -gamepad1.left_stick_y;  // Note: pushing stick forward gives negative value
@@ -186,6 +188,7 @@ public class OmniWheels extends LinearOpMode {
             rightBackDrive.setPower(rightBackPower);
 
             // Arm is on gamepad sticks from a second controller
+            
             handMovement.setposition(gamepad2.rightstick_y);
             shoulderMove.setPower(gamepad2.leftstick_y);
             elbowMove.setPower(gamepad2.leftstick_x);
