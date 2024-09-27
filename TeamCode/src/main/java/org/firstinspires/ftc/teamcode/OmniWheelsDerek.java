@@ -143,6 +143,12 @@ public class OmniWheelsDerek extends LinearOpMode {
             double lateral =  gamepad1.right_stick_x;   
             double yaw     =  gamepad1.left_stick_x;
 
+            boolean close    = gamepad2.right_bumper;
+            boolean release  = gamepad2.left_bumper;
+            double shoulderSpeed = gamepad2.left_stick_y;
+            double elbowSpeed = gamepad2.right_stick_y;
+            
+            
             // Combine the joystick requests for each axis-motion to determine each wheel's power.
             // Set up a variable for each drive wheel to save the power level for telemetry.
             //    Lateral is Strafe and yaw is turn clockwise/counter clockwise
@@ -156,13 +162,25 @@ public class OmniWheelsDerek extends LinearOpMode {
             max = Math.max(Math.abs(leftFrontPower), Math.abs(rightFrontPower));
             max = Math.max(max, Math.abs(leftBackPower));
             max = Math.max(max, Math.abs(rightBackPower));
-
+            
             if (max > 1.0) {
                 leftFrontPower  /= max;
                 rightFrontPower /= max;
                 leftBackPower   /= max;
                 rightBackPower  /= max;
             }
+
+            if (close == true) {
+                handMovement.setPosition(Math.max(0.0, handMovement.getPosition - 0.01));
+            } else if (release == true) {
+                handMovement.setPosition(Math.min(1.0, handMovement.getPosition + 0.01));
+            }
+
+            // Math.min/Math.max: Take the number you just calculated and the first number and use the number that is
+            //smaller or larger depending on if it is max or min
+            
+            shoulderMove.setPower(shoulderSpeed);
+            elbowMove.setPower(elbowSpeed);
 
             // This is test code:
             //
@@ -188,11 +206,9 @@ public class OmniWheelsDerek extends LinearOpMode {
             rightBackDrive.setPower(rightBackPower);
 
             // Arm is on gamepad sticks from a second controller
-            
-            handMovement.setposition(gamepad2.rightstick_y);
-            shoulderMove.setPower(gamepad2.leftstick_y);
-            elbowMove.setPower(gamepad2.leftstick_x);
 
+            
+            
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
