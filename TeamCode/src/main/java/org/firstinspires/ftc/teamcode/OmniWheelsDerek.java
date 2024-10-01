@@ -227,7 +227,7 @@ public class OmniWheelsDerek extends LinearOpMode {
             leftBackDrive.setPower(leftBackPower);
             rightBackDrive.setPower(rightBackPower);
 
-            // Arm is on gamepad sticks from a second controller
+
 
             
             
@@ -235,6 +235,9 @@ public class OmniWheelsDerek extends LinearOpMode {
             // telemetry.addData("Status", "Run Time: " + runtime.toString());
             // telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
             // telemetry.addData("Back  left/Right", "%4.2f, %4.2f", leftBackPower, rightBackPower);
+
+            // MotorSpeed: speed of each motor.
+            // ServoPosition position of each servo
             for (DcMotor thisMotor in allMotors) {
                 telemetry.addData("MotorSpeed", thismotor.getSpeed());
             }
