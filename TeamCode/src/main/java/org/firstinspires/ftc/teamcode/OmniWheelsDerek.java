@@ -35,6 +35,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import java.util.List;
+import java.util.ArrayList;
 
 /*
  * This file contains an example of a Linear "OpMode".
@@ -80,7 +82,10 @@ public class OmniWheelsDerek extends LinearOpMode {
     private Servo handMovement = null;
     private DcMotor elbowMove = null;
 
-
+    List<DcMotor> allMotors = new ArrayList<> ();
+    
+    List<Servo> allServos = new ArrayList<> ();
+    
     
     @Override
     public void runOpMode() {
@@ -97,7 +102,16 @@ public class OmniWheelsDerek extends LinearOpMode {
         handMovement = hardwareMap.get(Servo.class, "hand_servo");
         elbowMove = hardwareMap.get(DcMotor.class, "elbow_move");
 
+        // Adding Servos and Motors to corresponding lists
+        allMotors.add(leftForntDrive);
+        allMotors.add(rightForntDrive);
+        allMotors.add(leftBackDrive);
+        allMotors.add(rightBackDrive);
+        allMotors.add(shoulderMove);
+        allMotors.add(elbowMove);
 
+        allServos.add(handMovement);
+        
         
         // ########################################################################################
         // !!!            IMPORTANT Drive Information. Test your motor directions.            !!!!!
@@ -143,8 +157,14 @@ public class OmniWheelsDerek extends LinearOpMode {
             double lateral =  gamepad1.right_stick_x;   
             double yaw     =  gamepad1.left_stick_x;
 
-            boolean close    = gamepad2.right_bumper;
-            boolean release  = gamepad2.left_bumper;
+            telemetry.addData ("Axial", axial);
+            telemetry.addData ("Lateral", lateral);
+            telemetry.addData ("Yaw", yaw);
+            
+            
+            //    Variables of hand/arm
+            boolean closeHand    = gamepad2.right_bumper;
+            boolean releaseHand  = gamepad2.left_bumper;
             double shoulderSpeed = gamepad2.left_stick_y;
             double elbowSpeed = gamepad2.right_stick_y;
             
@@ -170,15 +190,17 @@ public class OmniWheelsDerek extends LinearOpMode {
                 rightBackPower  /= max;
             }
 
-            if (close == true) {
+            // Hand Movements
+            if (closeHand == true) {
                 handMovement.setPosition(Math.max(0.0, handMovement.getPosition - 0.01));
-            } else if (release == true) {
+            } else if (releaseHand == true) {
                 handMovement.setPosition(Math.min(1.0, handMovement.getPosition + 0.01));
             }
 
             // Math.min/Math.max: Take the number you just calculated and the first number and use the number that is
-            //smaller or larger depending on if it is max or min
-            
+            // smaller or larger depending on if it is max or min
+
+            // Shoulder and Elbow movements
             shoulderMove.setPower(shoulderSpeed);
             elbowMove.setPower(elbowSpeed);
 
@@ -210,9 +232,16 @@ public class OmniWheelsDerek extends LinearOpMode {
             
             
             // Show the elapsed game time and wheel power.
-            telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
-            telemetry.addData("Back  left/Right", "%4.2f, %4.2f", leftBackPower, rightBackPower);
+            // telemetry.addData("Status", "Run Time: " + runtime.toString());
+            // telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
+            // telemetry.addData("Back  left/Right", "%4.2f, %4.2f", leftBackPower, rightBackPower);
+            for (DcMotor thisMotor in allMotors) {
+                telemetry.addData("MotorSpeed", thismotor.getSpeed());
+            }
+
+            for (Servo thisServo in allServos) {
+                telemetry.addData("ServoPosition", thisServo.getPosition());
+            }
             telemetry.update();
         }
     }}
