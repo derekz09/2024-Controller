@@ -143,12 +143,11 @@ public class OmniWheelsDerek extends LinearOpMode {
         while (opModeIsActive()) {
             double max;
 
-
              // Servo setup
-            static final double INCRAMENT = 0.01;  // Incrament by .01 every time
-            static final int CYCLE_MS = 50;        // Incrament every 50ms
-            static final double MAX_POS = 1.0;     // Maximum Rotational position of 1.0
-            static final double MIN_POS = 0.0;     // Minimum Rotational position of 0.0
+            final double INCRAMENT = 0.01;  // Incrament by .01 every time
+            final int CYCLE_MS = 50;        // Incrament every 50ms
+            final double MAX_POS = 1.0;     // Maximum Rotational position of 1.0
+            final double MIN_POS = 0.0;     // Minimum Rotational position of 0.0
 
             
             // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate.
