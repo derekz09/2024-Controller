@@ -237,11 +237,11 @@ public class OmniWheelsDerek extends LinearOpMode {
 
             // MotorSpeed: speed of each motor.
             // ServoPosition position of each servo
-            for (DcMotor thisMotor; allMotors) {
+            for (DcMotor thisMotor in allMotors) {
                 telemetry.addData("MotorSpeed", thismotor.getSpeed());
             }
-
-            for (Servo thisServo; allServos) {
+            
+            for (Servo thisServo in allServos) {
                 telemetry.addData("ServoPosition", thisServo.getPosition());
             }
             telemetry.update();
