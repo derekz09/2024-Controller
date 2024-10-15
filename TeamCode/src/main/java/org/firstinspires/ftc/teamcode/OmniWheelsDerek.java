@@ -203,7 +203,18 @@ public class OmniWheelsDerek extends LinearOpMode {
             shoulderMove.setPower(shoulderSpeed);
             elbowMove.setPower(elbowSpeed);
 
+
             // This is test code:
+            //
+            // if (gamepad2.x == true) {
+            //   shoulderMove.setPower(1);
+            //   elbowMove.setPower(1);
+            //
+            // }
+            //
+            //
+                
+            // This is more test code:
             //
             // Uncomment the following code to test your motor directions.
             // Each button should make the corresponding motor run FORWARD.
