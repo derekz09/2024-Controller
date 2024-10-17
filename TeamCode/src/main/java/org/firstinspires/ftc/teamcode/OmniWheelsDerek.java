@@ -103,8 +103,8 @@ public class OmniWheelsDerek extends LinearOpMode {
         elbowMove = hardwareMap.get(DcMotor.class, "elbow_move");
 
         // Adding Servos and Motors to corresponding lists
-        allMotors.add(leftForntDrive);
-        allMotors.add(rightForntDrive);
+        allMotors.add(leftFrontDrive);
+        allMotors.add(rightFrontDrive);
         allMotors.add(leftBackDrive);
         allMotors.add(rightBackDrive);
         allMotors.add(shoulderMove);
@@ -163,6 +163,8 @@ public class OmniWheelsDerek extends LinearOpMode {
             
             //    Variables of hand/arm
             boolean closeHand    = gamepad2.right_bumper;
+            boolean moveArmForward = gamepad2.x;
+            boolean moveArmBackward = gamepad2.b;
             boolean releaseHand  = gamepad2.left_bumper;
             double shoulderSpeed = gamepad2.left_stick_y;
             double elbowSpeed = gamepad2.right_stick_y;
@@ -191,9 +193,9 @@ public class OmniWheelsDerek extends LinearOpMode {
 
             // Hand Movements
             if (closeHand == true) {
-                handMovement.setPosition(Math.max(0.0, handMovement.getPosition - 0.01));
+                handMovement.setPosition(Math.max(0.0, handMovement.getPosition() - 0.01));
             } else if (releaseHand == true) {
-                handMovement.setPosition(Math.min(1.0, handMovement.getPosition + 0.01));
+                handMovement.setPosition(Math.min(1.0, handMovement.getPosition() + 0.01));
             }
 
             // Math.min/Math.max: Take the number you just calculated and the first number and use the number that is
@@ -205,8 +207,6 @@ public class OmniWheelsDerek extends LinearOpMode {
 
 
             // This is test code:
-            boolean moveArmForward = gamepad2.x
-            boolean moveArmBackward = gamepad2.b
             
             if (moveArmForward == true) {
               shoulderMove.setPower(1);
@@ -257,7 +257,7 @@ public class OmniWheelsDerek extends LinearOpMode {
             // MotorSpeed: speed of each motor.
             // ServoPosition position of each servo
             for (DcMotor thisMotor: allMotors) {
-                telemetry.addData("MotorSpeed", thismotor.getSpeed());
+                telemetry.addData("MotorSpeed", thisMotor.getPower());
             }
             
             for (Servo thisServo: allServos) {
