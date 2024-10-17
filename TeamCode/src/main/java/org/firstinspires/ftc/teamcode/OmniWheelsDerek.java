@@ -205,16 +205,18 @@ public class OmniWheelsDerek extends LinearOpMode {
 
 
             // This is test code:
-            //
-            // if (gamepad2.x == true) {
-            //   shoulderMove.setPower(1);
-            //   elbowMove.setPower(1);
-            //
-            // } else if (gamepad2.b == true) {
-            //    shoulderMove.setPower(-1);
-            //    elbowMove.setPower(-1);
-            //     
-            // }
+            boolean moveArmForward = gamepad2.x
+            boolean moveArmBackward = gamepad2.b
+            
+            if (moveArmForward == true) {
+              shoulderMove.setPower(1);
+              elbowMove.setPower(1);
+            
+            } else if (moveArmBackward == true) {
+               shoulderMove.setPower(-1);
+               elbowMove.setPower(-1);
+                
+            }
 
 
             
