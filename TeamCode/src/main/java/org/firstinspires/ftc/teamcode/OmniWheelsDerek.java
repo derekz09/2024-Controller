@@ -216,6 +216,9 @@ public class OmniWheelsDerek extends LinearOpMode {
                shoulderMove.setPower(-1);
                elbowMove.setPower(-1);
                 
+            } else {
+                houlderMove.setPower(0);
+                elbowMove.setPower(0);
             }
 
 
