@@ -94,8 +94,10 @@ public class AutoWithHardware extends LinearOpMode {
         while (opModeIsActive()) {
 
             
-            robot.driveRobot(1, 0, 0) // (drive, strafe, turn)
+            robot.driveRobot(0, 1, 0) // (drive, strafe, turn) Get away from wall
             sleep(2*INCH_TO_TICK)
+            robot.driveRobot(1, 0, 0)
+            sleep(24*INCH_TO_TICK)
 
 
 
