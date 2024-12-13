@@ -78,7 +78,9 @@ public class AutoWithHardware extends LinearOpMode {
         double turn         = 0;
         
         double INCH_TO_TICK = 20.0 // Untested value
+        double INCHES = 25.0 // Untested value
         double TICK_TO_INCH = 0.05; // Untested value
+        double DEGREE_TO_TICK = 0.07*INCH_TO_TICK  // Degrees of turn at full speed turned to ticks of time if: robot diameter from wheel to wheel is 16" and INCH_TO_TICK time
 
         // double arm          = 0;
         // double handOffset   = 0;
@@ -94,14 +96,52 @@ public class AutoWithHardware extends LinearOpMode {
         while (opModeIsActive()) {
 
             
-            robot.driveRobot(0, 1, 0) // (drive, strafe, turn) Get away from wall
-            sleep(2*INCH_TO_TICK)
-            robot.driveRobot(1, 0, 0)
-            sleep(24*INCH_TO_TICK)
-
-
-
+            robot.driveRobot(0.0, 1.0, 0.0); // (drive, strafe, turn) Get away from wall
+            sleep(2*INCH_TO_TICK);
+            driveRobot(0.0, 0.0, 0.0); // Wait for .1 seconds
+            sleep(100);
                 
+            robot.driveRobot(1.0, 0.0, 0.0); // Drive to net Zone/baskets
+            sleep(24*INCH_TO_TICK);
+            driveRobot(0.0, 0.0, 0.0); // Wait for .1 seconds
+            sleep(100);
+                
+            robot.standUp(18); // Not tested value.  Stand up
+            sleep(18*INCHES);
+            robot.standUp(0);
+            sleep(100);
+            
+            robot.toggleDepositDoor();  // Release Starting speciman. Then close door
+            sleep(100);
+            robot.toggleDepositDoor();
+            sleep(100);
+            
+            robot.standUp(-18.0); // Drop down
+            sleep(18*INCHES);
+            robot.standUp(0.0);
+            sleep(100)
+                
+            robot.driveRobot(0.0, 0.0, 1.0) // spin 160-ish degrees
+            sleep(160*DEGREE_TO_TICK);
+            driveRobot(0.0, 0.0, 0.0) // Wait for .1 seconds
+            sleep(100)
+                
+            robot.driveRobot(1.0, 0.0, 0.0); // drive to sample on ground and pick it up, but don't turn on sweeper because
+            sleep(114*INCH_TO_TICK);         // we don't want the sample going up the screw
+            driveRobot(0.0, 0.0, 0.0) // Wait for .1 seconds
+            sleep(100)
+                
+            robot.driveRobot(0.0, 0.0, 1.0); //Spin towards observation zone
+            sleep(105*DEGREE_TO_TICK);
+            driveRobot(0.0, 0.0, 0.0) // Wait for .1 seconds
+            sleep(100)
+                
+            robot.driveRobot(1.0, 0.0, 0.0); // Drive to observation zone
+            sleep(42*INCH_TO_TICK)
+            driveRobot(0.0, 0.0, 0.0) // Wait for .1 seconds
+            sleep(100)
+
+            
             // Send telemetry messages to explain controls and show robot status
             telemetry.addData("Drive", "Left Stick");
             telemetry.addData("Turn", "Right Stick");
