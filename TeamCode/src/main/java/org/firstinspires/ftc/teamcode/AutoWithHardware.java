@@ -80,7 +80,8 @@ public class AutoWithHardware extends LinearOpMode {
         double INCH_TO_TICK = 20.0 // Untested value
         double INCHES = 25.0 // Untested value
         double TICK_TO_INCH = 0.05; // Untested value
-        double DEGREE_TO_TICK = 0.07*INCH_TO_TICK  // Degrees of turn at full speed turned to ticks of time if: robot diameter from wheel to wheel is 16" and INCH_TO_TICK time
+        double DEGREE_TO_TICK = 0.07*INCH_TO_TICK  // Degrees of turn at full speed turned to ticks of time if: 
+                                                   // robot diameter from wheel to wheel is 16" and INCH_TO_TICK time is correct
 
         // double arm          = 0;
         // double handOffset   = 0;
@@ -106,20 +107,27 @@ public class AutoWithHardware extends LinearOpMode {
             driveRobot(0.0, 0.0, 0.0); // Wait for .1 seconds
             sleep(100);
                 
-            robot.standUp(18); // Not tested value.  Stand up
+            robot.standUp(18.0); // Stand up
             sleep(18*INCHES);
-            robot.standUp(0);
+            robot.liftScrew(18.0);  
+            //robot.standUp(0.0); // Only use this if stand up is based on time and not distance
+            sleep(100);
+            //robot.liftScrew(0.0); 
             sleep(100);
             
             robot.toggleDepositDoor();  // Release Starting speciman. Then close door
             sleep(100);
+            
             robot.toggleDepositDoor();
             sleep(100);
             
             robot.standUp(-18.0); // Drop down
             sleep(18*INCHES);
-            robot.standUp(0.0);
-            sleep(100)
+            robot.liftScrew(-18.0); 
+            //robot.standUp(0.0); // Only use this if stand up is based on time and not distance
+            sleep(100);
+            //robot.liftScrew(0.0); 
+            sleep(100);
                 
             robot.driveRobot(0.0, 0.0, 1.0) // spin 160-ish degrees
             sleep(160*DEGREE_TO_TICK);
@@ -141,6 +149,12 @@ public class AutoWithHardware extends LinearOpMode {
             driveRobot(0.0, 0.0, 0.0) // Wait for .1 seconds
             sleep(100)
 
+            robot.setScrewPower(-1); // Spin screw in reverse to get sample out of robot
+            sleep(100)
+            robot.setScrewPower(0)
+            sleep(100)
+
+                // This should be correct-ish as long as the variable values get changed to be correct and the entrance to the screw is in the front of the robot.
             
             // Send telemetry messages to explain controls and show robot status
             telemetry.addData("Drive", "Left Stick");
