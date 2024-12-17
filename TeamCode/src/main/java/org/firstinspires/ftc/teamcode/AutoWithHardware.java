@@ -111,7 +111,7 @@ public class AutoWithHardware extends LinearOpMode {
             sleep(18*INCHES);
             robot.liftScrew(18.0);  
             //robot.standUp(0.0); // Only use this if stand up is based on time and not distance
-            sleep(100);
+            //sleep(100);
             //robot.liftScrew(0.0); 
             sleep(100);
             
@@ -125,7 +125,7 @@ public class AutoWithHardware extends LinearOpMode {
             sleep(18*INCHES);
             robot.liftScrew(-18.0); 
             //robot.standUp(0.0); // Only use this if stand up is based on time and not distance
-            sleep(100);
+            //sleep(100);
             //robot.liftScrew(0.0); 
             sleep(100);
                 
