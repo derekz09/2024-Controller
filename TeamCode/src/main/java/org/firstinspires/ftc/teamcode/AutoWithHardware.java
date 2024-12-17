@@ -77,7 +77,7 @@ public class AutoWithHardware extends LinearOpMode {
         double strafe       = 0;
         double turn         = 0;
         
-        double INCH_TO_TICK = 20.0 // Untested value
+        double INCH_TO_TICK = 100.0 // Untested value
         double FOOT_TO_TICK = INCH_TO_TICK*12
         
         double TICK_TO_INCH = 0.05; // Untested value
@@ -108,18 +108,19 @@ public class AutoWithHardware extends LinearOpMode {
             driveRobot(0.0, 0.0, 0.0); // Wait for .1 seconds
             sleep(100);
                 
-            robot.standUp(18.0); // Stand up 18 is a random distance that I created as a test value
-            robot.liftScrew(18.0);  
+            robot.standUp(7.5); // Stand up 18 is a random distance that I created as a test value
+            robot.liftScrew(7.5);  
             sleep(100);
-            
+
+            robot.spinScrew(.75);
             robot.toggleDepositDoor();  // Release Starting speciman. Then close door
-            sleep(100);
-            
-            robot.toggleDepositDoor();
-            sleep(100);
-            
-            robot.standUp(-18.0); // Drop down
-            robot.liftScrew(-18.0); 
+            sleep(1000);
+            spinScrew(0.0);
+            robot.toggleDepositDoor();  // May change 
+
+          
+            robot.standUp(-7.5); // Drop down
+            robot.liftScrew(-7.5); 
             sleep(100);
                 
             robot.driveRobot(0.0, 0.0, 1.0); // spin 160-ish degrees
