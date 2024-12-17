@@ -80,7 +80,7 @@ public class AutoWithHardware extends LinearOpMode {
         double INCH_TO_TICK = 20.0 // Untested value
         double INCHES = 25.0 // Untested value
         double TICK_TO_INCH = 0.05; // Untested value
-        double DEGREE_TO_TICK = 0.07*INCH_TO_TICK  // Degrees of turn at full speed turned to ticks of time if: 
+        double DEGREE_TO_TICK = 0.15*INCH_TO_TICK  // Degrees of turn at full speed turned to ticks of time if: 
                                                    // robot diameter from wheel to wheel is 16" and INCH_TO_TICK time is correct
 
         // double arm          = 0;
