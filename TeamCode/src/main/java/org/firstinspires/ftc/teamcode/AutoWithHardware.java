@@ -107,8 +107,7 @@ public class AutoWithHardware extends LinearOpMode {
             driveRobot(0.0, 0.0, 0.0); // Wait for .1 seconds
             sleep(100);
                 
-            robot.standUp(18.0); // Stand up
-            sleep(18*INCHES);
+            robot.standUp(18.0); // Stand up 18 is a random distance that I created as a test value
             robot.liftScrew(18.0);  
             //robot.standUp(0.0); // Only use this if stand up is based on time and not distance
             //sleep(100);
@@ -122,7 +121,6 @@ public class AutoWithHardware extends LinearOpMode {
             sleep(100);
             
             robot.standUp(-18.0); // Drop down
-            sleep(18*INCHES);
             robot.liftScrew(-18.0); 
             //robot.standUp(0.0); // Only use this if stand up is based on time and not distance
             //sleep(100);
