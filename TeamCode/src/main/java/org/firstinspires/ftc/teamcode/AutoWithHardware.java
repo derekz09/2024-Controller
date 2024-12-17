@@ -109,9 +109,6 @@ public class AutoWithHardware extends LinearOpMode {
                 
             robot.standUp(18.0); // Stand up 18 is a random distance that I created as a test value
             robot.liftScrew(18.0);  
-            //robot.standUp(0.0); // Only use this if stand up is based on time and not distance
-            //sleep(100);
-            //robot.liftScrew(0.0); 
             sleep(100);
             
             robot.toggleDepositDoor();  // Release Starting speciman. Then close door
@@ -122,9 +119,6 @@ public class AutoWithHardware extends LinearOpMode {
             
             robot.standUp(-18.0); // Drop down
             robot.liftScrew(-18.0); 
-            //robot.standUp(0.0); // Only use this if stand up is based on time and not distance
-            //sleep(100);
-            //robot.liftScrew(0.0); 
             sleep(100);
                 
             robot.driveRobot(0.0, 0.0, 1.0) // spin 160-ish degrees
