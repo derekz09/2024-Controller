@@ -78,7 +78,8 @@ public class AutoWithHardware extends LinearOpMode {
         double turn         = 0;
         
         double INCH_TO_TICK = 20.0 // Untested value
-        double INCHES = 25.0 // Untested value
+        double FOOT_TO_TICK = INCH_TO_TICK*12
+        
         double TICK_TO_INCH = 0.05; // Untested value
         double DEGREE_TO_TICK = 0.15*INCH_TO_TICK  // Degrees of turn at full speed turned to ticks of time if: 
                                                    // robot diameter from wheel to wheel is 16" and INCH_TO_TICK time is correct
@@ -121,30 +122,30 @@ public class AutoWithHardware extends LinearOpMode {
             robot.liftScrew(-18.0); 
             sleep(100);
                 
-            robot.driveRobot(0.0, 0.0, 1.0) // spin 160-ish degrees
+            robot.driveRobot(0.0, 0.0, 1.0); // spin 160-ish degrees
             sleep(160*DEGREE_TO_TICK);
-            driveRobot(0.0, 0.0, 0.0) // Wait for .1 seconds
-            sleep(100)
+            driveRobot(0.0, 0.0, 0.0); // Wait for .1 seconds
+            sleep(100);
                 
             robot.driveRobot(1.0, 0.0, 0.0); // drive to sample on ground and pick it up, but don't turn on sweeper because
             sleep(114*INCH_TO_TICK);         // we don't want the sample going up the screw
-            driveRobot(0.0, 0.0, 0.0) // Wait for .1 seconds
-            sleep(100)
+            driveRobot(0.0, 0.0, 0.0); // Wait for .1 seconds
+            sleep(100);
                 
             robot.driveRobot(0.0, 0.0, 1.0); //Spin towards observation zone
             sleep(105*DEGREE_TO_TICK);
-            driveRobot(0.0, 0.0, 0.0) // Wait for .1 seconds
-            sleep(100)
+            driveRobot(0.0, 0.0, 0.0); // Wait for .1 seconds
+            sleep(100);
                 
             robot.driveRobot(1.0, 0.0, 0.0); // Drive to observation zone
-            sleep(42*INCH_TO_TICK)
-            driveRobot(0.0, 0.0, 0.0) // Wait for .1 seconds
-            sleep(100)
+            sleep(42*INCH_TO_TICK);
+            driveRobot(0.0, 0.0, 0.0); // Wait for .1 seconds
+            sleep(100);
 
             robot.setScrewPower(-1); // Spin screw in reverse to get sample out of robot
-            sleep(100)
-            robot.setScrewPower(0)
-            sleep(100)
+            sleep(100);
+            robot.setScrewPower(0);
+            sleep(100);
 
                 // This should be correct-ish as long as the variable values get changed to be correct and the entrance to the screw is in the front of the robot.
             
